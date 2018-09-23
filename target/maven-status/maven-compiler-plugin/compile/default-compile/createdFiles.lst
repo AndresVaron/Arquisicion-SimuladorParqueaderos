@@ -1,5 +1,5 @@
-simuladorparqueadero\Simulador.class
-simuladorparqueadero\Encuentro.class
-simuladorparqueadero\Servidor.class
-simuladorparqueadero\Salida.class
-simuladorparqueadero\Entrada.class
+SimuladorParqueadero\Entrada.class
+SimuladorParqueadero\Encuentro.class
+SimuladorParqueadero\Servidor.class
+SimuladorParqueadero\Salida.class
+SimuladorParqueadero\Simulador.class
