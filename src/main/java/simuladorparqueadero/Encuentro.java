@@ -68,6 +68,10 @@ public class Encuentro extends Thread {
                             throw new Exception("Los ids no corresponden");
                         }
                     }
+                    else if(info.startsWith("RESERVA")) {
+                    	System.out.println(info);
+                    	simulador.disminuirCupo();
+                    }
                     if (info.startsWith("FIN")) {
                         System.out.println("Fin conexion");
                         fin = true;
