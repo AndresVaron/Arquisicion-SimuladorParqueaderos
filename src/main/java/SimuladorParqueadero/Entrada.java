@@ -1,4 +1,4 @@
-package SimuladorParqueadero;
+package simuladorparqueadero;
 
 /**
  *
