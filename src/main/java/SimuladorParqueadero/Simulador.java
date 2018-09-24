@@ -1,4 +1,4 @@
-package simuladorparqueadero;
+package SimuladorParqueadero;
 
 import java.util.ArrayList;
 import java.util.List;

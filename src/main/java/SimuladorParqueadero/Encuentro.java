@@ -1,4 +1,4 @@
-package simuladorparqueadero;
+package SimuladorParqueadero;
 
 import java.io.*;
 import java.net.*;
