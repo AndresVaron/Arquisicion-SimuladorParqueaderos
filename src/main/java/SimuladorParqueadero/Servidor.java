@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Collection;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -35,6 +36,7 @@ public class Servidor extends Thread {
      */
     public Servidor(Simulador simulador) {
         this.simulador = simulador;
+        encuentros = new ArrayList();
     }
 
     /**
@@ -57,10 +59,10 @@ public class Servidor extends Thread {
                 Encuentro encuentro = new Encuentro(socketConexion, simulador);
                 encuentros.add(encuentro);
                 encuentro.start();
-                try {
-                    socketConexion.close();
-                } catch (IOException e) {
-                }
+                //try {
+                //    socketConexion.close();
+                //} catch (IOException e) {
+                //}
             }
         } catch (IOException e) {
         } finally {

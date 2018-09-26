@@ -71,7 +71,7 @@ public class Simulador {
             setCupos(reader.nextInt());
             System.out.println("Ingrese el numero de entradas vehiculares a simular");
             setEntrada(reader.nextInt());
-            System.out.println("Ingrese el numero de entradas vehiculares a simular");
+            System.out.println("Ingrese el numero de salidas vehiculares a simular");
             setSalida(reader.nextInt());
         }
         setCuposActuales(getCupos());
