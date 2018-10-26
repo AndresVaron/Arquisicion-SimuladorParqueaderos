@@ -88,8 +88,7 @@ public class Simulador {
 
     public synchronized void aumentarCupo() {
         setCuposActuales(getCuposActuales() + 1);
-        System.out.println("{ \"id\": " + getId() + ", \"tipo\":\"salida\"}" + getCuposActuales());
-        ProducerRecord<String, String> rec = new ProducerRecord<>("Update_Cupos", "{ \"id\": " + getId() + ", \"tipo\":\"salida\"}");
+        ProducerRecord<String, String> rec = new ProducerRecord<>("Update_Cupos_v2", "{ \"id\": " + getId() + ", \"cupos\":" + getCuposActuales() + "}");
         try {
             getProducer().send(rec);
         } catch (Exception e) {
@@ -98,8 +97,7 @@ public class Simulador {
 
     public synchronized void disminuirCupo() {
         setCuposActuales(getCuposActuales() - 1);
-        System.out.println("{ \"id\": " + getId() + ", \"tipo\":\"llegada\"}" + getCuposActuales());
-        ProducerRecord<String, String> rec = new ProducerRecord<>("Update_Cupos", "{ \"id\": " + getId() + ", \"tipo\":\"llegada\"}");
+        ProducerRecord<String, String> rec = new ProducerRecord<>("Update_Cupos_v2", "{ \"id\": " + getId() + ", \"cupos\":" + getCuposActuales() + "}");
         try {
             getProducer().send(rec);
         } catch (Exception e) {
@@ -111,7 +109,7 @@ public class Simulador {
         entradas = new ArrayList<>();
         salidas = new ArrayList<>();
         Properties configProperties = new Properties();
-        configProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.24.41.199:8084");
+        configProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "ec2-35-161-3-13.us-west-2.compute.amazonaws.com:8081");
         configProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.ByteArraySerializer");
         configProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         producer = new KafkaProducer(configProperties);
@@ -139,7 +137,6 @@ public class Simulador {
             } catch (InterruptedException ex) {
             }
         }
-        System.out.println("Carro Entrando");
         disminuirCupo();
         notifyAll();
     }
@@ -151,7 +148,6 @@ public class Simulador {
             } catch (InterruptedException ex) {
             }
         }
-        System.out.println("Carro Saliendo");
         aumentarCupo();
         notifyAll();
     }

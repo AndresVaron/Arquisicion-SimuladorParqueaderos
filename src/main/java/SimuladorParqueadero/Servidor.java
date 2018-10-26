@@ -46,7 +46,7 @@ public class Servidor extends Thread {
     public void recibirConexiones() {
         System.out.println("Recibiendo conexiones");
         try {
-            receptor = new ServerSocket(0);
+            receptor = new ServerSocket(8089);
             System.out.println("{ \"id\": " + simulador.getId() + ", \"cupos\":" + simulador.darCuposActuales() + ", \"ip\":\"" + InetAddress.getLocalHost().getHostAddress() + "\"" + ", \"puerto\":\"" + receptor.getLocalPort() + "\"}");
             ProducerRecord<String, String> rec = new ProducerRecord<>("Update_Conexion", "{ \"id\": " + simulador.getId() + ", \"cupos\":" + simulador.darCuposActuales() + ", \"ip\":\"" + InetAddress.getLocalHost().getHostAddress() + "\"" + ", \"puerto\":\"" + receptor.getLocalPort() + "\"}");
             try {
@@ -59,10 +59,7 @@ public class Servidor extends Thread {
                 Encuentro encuentro = new Encuentro(socketConexion, simulador);
                 encuentros.add(encuentro);
                 encuentro.start();
-                //try {
-                //    socketConexion.close();
-                //} catch (IOException e) {
-                //}
+
             }
         } catch (IOException e) {
         } finally {
